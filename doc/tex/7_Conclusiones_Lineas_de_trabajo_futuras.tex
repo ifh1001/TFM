@@ -1,4 +1,16 @@
 \capitulo{7}{Conclusiones y Líneas de trabajo futuras}
 
-Todo proyecto debe incluir las conclusiones que se derivan de su desarrollo. Éstas pueden ser de diferente índole, dependiendo de la tipología del proyecto, pero normalmente van a estar presentes un conjunto de conclusiones relacionadas con los resultados del proyecto y un conjunto de conclusiones técnicas. 
-Además, resulta muy útil realizar un informe crítico indicando cómo se puede mejorar el proyecto, o cómo se puede continuar trabajando en la línea del proyecto realizado. 
+\section{Conclusiones}
+Tras la investigación llevada a cabo en este proyecto, los resultados obtenidos, al aplicar redes neuronales convolucionales sobre los datos prestados a la empresa, no han sido los deseados, ya que la mayor precisión obtenida ha sido del 57\%, un valor para nada aceptable.
+
+Es por ello, que creemos que al contar con un conjunto desbalanceado y con, tal vez, pocos ejemplos, los resultados no han sido tan buenos como los que cabría esperar. Además, es probable que este tipo de red neuronal no sea la mejor ante los datos de entrada. Por lo que, consideramos que si se consiguen más datos, y quizás con un nuevo enfoque, se puedan obtener precisiones aceptables por parte de la empresa.
+
+Finalmente, y como es obvio, no se está satisfecho con los resultados obtenidos, aunque pensamos que se han seguido buenas estrategias frente a los datos prestados. Por todo lo anterior, en el siguiente apartado se plantean varias propuestas para mejorar los módelos y conseguir resultados más precisos. 
+
+\section{Líneas de trabajo futuras}
+Bajo mi punto de vista, creo que los siguientes pasos y mejoras del proyecto son:
+\begin{enumerate}
+    \item \textbf{Aumento de bobinas clasificadas pertenecientes a la clase NOK}: con el fin de tener un conjunto de datos más equilibrado y poder crear mejores modelos, sería interesante obtener más bobinas pertenecientes a la clase NOK. De igual manera, si el número de bobinas pertenecientes a la clase OK también aumenta, es bastante posible que el modelo obtenido sea más preciso. En definitiva, cuantos más datos se posean y más equitativo sea el conjunto de datos, los resultados que se consigan serán seguramente mejores.
+    \item \textbf{Conocer de manera exacta los criterios de validación de las bobinas:} como ya se ha comentado previamente, la empresa no nos ha dicho en ningún momento cuáles son los criterios exactos que usan para dar como válida o no una bobina, sino que simplemente con los datos medidos nos han pedido que creemos un modelo que sea capaz de aprender y realizar predicciones. Es por ello, que si se supieran sus criterios, se podría ajustar de alguna forma el modelo o utilizar alguna otra herramienta que mejore y facilite las predicciones.
+    \item \textbf{Desarrollar una aplicación web:} la aplicación actual es un \emph{notebook} sobre el cual se pueden cargar bobinas y con los modelos generados realizar predicciones sobre si serán válidas o no. Pero su interfaz no es del todo amigable, sobre todo para gente que no haya hecho nunca programación y es necesario tener en ejecución el archivo para poder utilizarlo. Es por ello, que sería una gran mejora hacer la aplicación en un entorno web con una interfaz sencilla para que los operarios puedan emplearla fácilmente.
+\end{enumerate}

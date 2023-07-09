@@ -1,11 +1,82 @@
 \apendice{Documentación técnica de programación}
 
 \section{Introducción}
+Este cuarto apéndice va destinado a las personas dedicadas a la informática y que quieran seguir con el proyecto en el futuro. Es por ello, que es necesario explicar todo claramente para que se pueda comprender. Los temas sobre los que se va a tratar son: estructura de directorios, manual del programador, ejecución del proyecto y pruebas del sistema.
 
 \section{Estructura de directorios}
+Este subapartado contiene la información sobre la estructura del proyecto, junto con sus diferentes directorios y ficheros. Además, toda la estructura se puede ver de manera pública en el repositorio de GitHub\footnote{Repositorio: \url{https://github.com/ifh1001/TFM}} del proyecto. A continuación, se puede ver de manera gráfica:
+\dirtree{%
+.1 /.
+.2 \texttt{doc}.
+.2 \texttt{src}.
+.2 \texttt{LICENSE}.
+.2 \texttt{README.md}.
+.2 \texttt{requirements.txt}.
+}
+Como se aprecia, se distinguen del directorio raíz 5 elementos, que se van a explicar a continuación:
+\begin{itemize}
+    \item \textbf{doc:} contiene toda la información relacionada con la documentación.
+    \item \textbf{src:} contiene en su interior todo el código desarrollado a lo largo del proyecto. Además, contiene la aplicación, junto con todo lo necesario para que pueda usarse.
+    \item \textbf{LICENSE:} fichero que contiene la licencia del proyecto, que como ya se ha comentado en el primer apéndice, es una licencia de tipo GPL v3.
+    \item \textbf{README.md:} contiene una breve descripción del repositorio, con el fin de que el lector comprenda la finalidad del proyecto.
+    \item \textbf{requirements.txt:} fichero que reúne los requisitos necesarios de librerías y versiones para ejecutar sin ningún problema la aplicación.
+\end{itemize}
+
+\subsection{Documentación}
+Como se ha comentado previamente, la documentación se encuentra en el directorio \texttt{/doc}. En él se encuentra un conjunto de ficheros escritos en \LaTeX que si se compilan todos ellos juntos se obtiene la memoria en formato PDF que da lugar a esta memoria que se está leyendo.
+
+\subsection{Código}
+El código desarrollado en el proyecto se encuentra en el directorio \texttt{/src}. A continuación se muestra la división de directorios y ficheros del mismo:
+\dirtree{%
+.1 \texttt{/src/}.
+.2 \texttt{aplicacion}.
+.3 \texttt{modelos}.
+.3 \texttt{Aplicacion.ipynb}.
+.3 \texttt{funciones.py}.
+.2 \texttt{CargaDatos.ipynb}.
+.2 \texttt{EvaluacionCNNs.ipynb}.
+.2 \texttt{ObtencionCaracteristicas.ipynb}.
+.2 \texttt{PreparacionCNNs.ipynb}.
+.2 \texttt{VisualizacionDatos.ipynb}.
+}
+
+Como se puede apreciar, el directorio \texttt{/src} está formado por un directorio y cinco \emph{notebooks}. A continuación, se puede ver una explicación sobre cada uno:
+
+\begin{itemize}
+    \item \texttt{aplicacion:} en este directorio se encuentra la estructura necesaria para que funcione la aplicación. Como se puede ver, hay un directorio más, \texttt{/modelos}, donde se encuentran almacenados los cinco modelos que utilizará la aplicación. Además, hay dos ficheros, un \emph{notebook} que será la aplicación y un fichero de \emph{Python} que contiene todas las funciones de manera encapsulada para que se pueda utilizar la aplicación de la manera más sencilla posible.
+    \item \texttt{CargaDatos.ipynb:} este \emph{notebook} contiene las primeras pruebas que se realizaron sobre los datos para conocer las diferentes tablas y registros que tenía cada una. Además, contiene una evaluación de bobinas según si cumplen o no todas sus tejas, los requisitos de zinc.
+    \item \texttt{EvaluacionCNNs.ipynb:} este fichero contiene los diferentes experimentos que se han llevado a cabo para obtener él mejore conjunto de modelos con la mayor precisión. Además, también guarda todos los modelos obtenidos para poder emplear cualquiera.
+    \item \texttt{ObtencionCaracteristicas.ipynb:} este \emph{notebook} se encarga de obtener el mapa codificado de cada bobina junto con las diferentes \emph{features}. Todos estos datos se calculan para cada tipo de datos, 1D y 2D, y para cada uno de los diferentes sensores.
+    \item \texttt{PreparacionCNNs.ipynb:} este fichero contiene las diferentes pruebas que se han efectuado para aprender a construir modelos con \emph{tensorflow} para familiarizarse con la librería y sentirse cómodo con el uso de la misma.
+    \item \texttt{VisualizacionDatos.ipynb:} contiene una visualización de los valores de zinc para cada bobina en forma de gráfica, para cada uno de los sensores de los datos 1D.
+\end{itemize}
 
 \section{Manual del programador}
+Tal y como se acaba de ver en el subpunto anterior. La aplicación se encuentra en el directorio \texttt{/src/aplicacion}. En él se pueden implementar nuevas funcionalidades de la aplicación añadiéndolas al fichero \texttt{funciones.py}. Además, en su interior, se encuentran todas las funciones debidamente comentadas para que puedan ser comprendidas y mejoradas en caso de que se desee. Adicionalmente, si se consiguen mejores modelos se pueden eliminar los antiguos y añadir los nuevos en el directorio \texttt{/src/aplicacion/modelos}.
+
+Si se quiere realizar alguna prueba más sobre las redes neuronales, o construir algunas nuevas empleando diferentes estrategias, o incluso utilizando datos diferentes, mi recomendación es que se realice en un \emph{notebook}, usando por ejemplo \emph{Jupyter Notebook}, ya que permite visualizar todo de una manera mucho más sencilla y posteriormente exportar las funciones a un fichero de \emph{Python}. Todos estos nuevos ficheros se pueden añadir directamente al directorio raíz del código (\texttt{/src}).
 
 \section{Compilación, instalación y ejecución del proyecto}
+Para usar la aplicación desarrollada en el proyecto, es necesario tener instalado en el dispositivo un entorno que tenga todas las dependencias de librerías que usa la aplicación, junto con una herramienta que permita ejecutar \emph{notebooks}, siendo recomendad el uso de \emph{Jupyter Notebook}.
+
+Las librerías utilizadas se pueden ver a continuación:
+\begin{itemize}
+    \item MySQL
+    \item Pandas
+    \item NumPY
+    \item Jupyter Widgets
+    \item TensorFlow
+\end{itemize}
+
+De forma que al instalar todas ellas en un entorno, se podría ejecutar sin ningún problema la aplicación. Pese a todo, y por si en algún punto existen versiones incompatibles entre sí, en el repositorio de GitHub existe el fichero \texttt{requirements.txt} para que se puedan instalar en un entorno de Anaconda las versiones utilizadas en el proyecto que garantizarían el correcto empleo de la aplicación. Dicho fichero se puede encontrar en el siguiente enlace:
+
+\url{https://github.com/ifh1001/TFM/blob/main/requirements.txt}
+
+Una vez se cuenten con las librerías instaladas, se puede usar la aplicación. Para ello, con una herramienta que permita ejecutar \emph{notebooks} se puede abrir el correspondiente a la aplicación y ejecutar las tres celdas que la componen para poder seleccionar las bobinas sobre las que realizar predicciones.
 
 \section{Pruebas del sistema}
+Este proyecto se ha centrado en la investigación de obtener un grupo de modelos capaces de predecir si una bobina iba a ser válida o no para poder usarse por parte de la empresa. Es por ello, que se ha dado más peso a la investigación que a la construcción de una aplicación lo más perfecta posible y realizando pruebas de sistema para garantizar su correcto funcionamiento.
+
+Pese a todo, se han llevado a cabo dos pruebas relevantes a la hora de construir y evaluar los modelos. Por un lado, se han separado del conjunto de datos inicial, una muestra de bobinas para, tras construir los modelos, evaluarlos con datos que nunca habían visto y así obtener unos resultados lo más realistas y probables posibles.
+
+Por otro lado, se llevó a cabo una prueba para obtener el mejor criterio de clasificación, probando un total de 6 valores, y para cada uno de ellos calcular y representar la curva ROC junto con su AUC, de forma, que se ha trabajado con aquel que mejor AUC tenía, ya que este criterio es él más óptimo para separar las clasificaciones entre una clase u otra.
