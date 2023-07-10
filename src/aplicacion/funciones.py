@@ -1,4 +1,4 @@
-#Contiene todas las funciones necesarias para ejecutar la aplicación
+# Contiene todas las funciones necesarias para ejecutar la aplicación
 #
 #
 # Realizado por Ismael Franco Hernando.
@@ -18,11 +18,31 @@ tf.get_logger().setLevel('ERROR')
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
+# -- Funciones --
 
+# Método encargado de controlar el proceso de carga de datos y de mostrar
+# el desplegable por panntalla, junto con los diferentes resultados.
+#
+# Parámetros:
+#  - use: nombre de usuario de la base de datos.
+#  - pas: contraseña de la base de datos.
+#  - host: host de la base de datos.
+#  - base: nombre tabla de la base de datos.
 def cargaDatos(use, pas, host, base):
     datos1D, clasif = conexionBase(use, pas, host, base)
     muestraBobinas(datos1D, clasif)
 
+# Método encargado de cargar los datos 1D y las bobinas clasificadas
+# y de devolver ambas tablas.
+#
+# Parámetros:
+#  - use: nombre de usuario de la base de datos.
+#  - pas: contraseña de la base de datos.
+#  - host: host de la base de datos.
+#  - base: nombre tabla de la base de datos. 
+# Return:
+#  - datos1D: registros medidos por los sensores 1D.
+#  - clasif: registros donde se encuentran las bobinas clasificadas.
 def conexionBase(use, pas, host, base):    
     try:
         cnx = connection.MySQLConnection(user=use, 
@@ -46,11 +66,17 @@ def conexionBase(use, pas, host, base):
             print(err)
 
 
+# Método encargado de mostrar el desplegable de bobinas y de mostrar
+# sus resultados.
+#
+# Parámetros:
+#  - datos1D: registros medidos por los sensores 1D.
+#  - datos: registros donde se encuentran las bobinas clasificadas.
 def muestraBobinas(datos1D, datos):
-    # Obtener los valores únicos de las bobinas
+    # Se obtienen los valores únicos de las bobinas
     valores_unicos = datos['SID'].unique()
 
-    # Crear el desplegable
+    # Se crea el menú desplegable
     desplegable = widgets.Dropdown(
         options=valores_unicos,
         description="Selecciona la bobina que desees:"
@@ -68,14 +94,20 @@ def muestraBobinas(datos1D, datos):
         creaCarpeta()
         caractersiticas.to_csv('./bobinas/'+str(idBobina)+'.csv', mode='w', index=False)
         evaluaBobina(caractersiticas, idBobina)
-
-    # Vincular la función con el desplegable
+    
     desplegable.observe(seleccionar_valor, names='value')
 
     # Mostrar el desplegable
     display(desplegable)
 
-    
+
+# Método encargado de calcular las features de una bobina para cada sensor.
+#
+# Parámetros:
+#  - datos: registros medidos por los sensores 1D de una bobina.
+#  - clasificados: registros donde se encuentran la bobina clasificada.
+# Return:
+#  - rDF: features calculadas.
 def get_features(datos, clasificados):
     # Creamos el DF que se devolverá con las diferentes columnas
     rDF = pd.DataFrame(columns = ['COILID' , 'MID', 'ZNMAX_FAILURES','ZNMIN_FAILURES', 'CALIBRATED', 'TOTAL_TILEID', 'L_DIS','R_DIS', 'MAP'])
@@ -211,6 +243,11 @@ def get_features(datos, clasificados):
     # Se devuelve el DF generado
     return rDF
 
+
+# Método encargado de cargar los modelos.
+#
+# Return:
+#  - modelosCargados: modelos que se han cargado.
 def cargaModelos():
     directorio = './modelos'
 
@@ -225,6 +262,13 @@ def cargaModelos():
         
     return modelosCargados
 
+
+# Método encargado de unir los mapas codificados para cada par de sensores.
+#
+# Parámetros:
+#  - datos: registros medidos por los sensores 1D de una bobina.
+# Return:
+#  - X: mapas unidos.
 def unionMapas1D(datos):
     bobinas = datos['COILID'].unique()
     sensores = [(123.0, 124.0), (201.0, 202.0)]
@@ -242,6 +286,14 @@ def unionMapas1D(datos):
             
     return X
 
+# Método encargado de aplicar padding a los datos sobre un tamaño en conreto.
+#
+# Parámetros:
+#  - X: mapas unidos de los datos 1D.
+#  - maxLongitud: lonngitud máxima para aplicar padding (por defecto es 208 ya
+#                 que es la que se ha obtenido durante las pruebas).
+# Return:
+#  - nuevoX: mapas procesados al aplicar padding.
 def preprocesado(X, maxLongitud=208):
     nuevoX = []
     for x in X:
@@ -249,18 +301,26 @@ def preprocesado(X, maxLongitud=208):
         
     return np.expand_dims(nuevoX, axis=-1)
 
+# Método encargado de realizar predicción sobre los datos.
+#
+# Parámetros:
+#  - datos: mapas procesados de la bobina.
+#  - idBobina: ID de la bobina sobre la que se van a realizar predicciones.
 def evaluaBobina(datos, idBobina):
+    # Se preparan los datos y se cargan los modelos
     mapa = unionMapas1D(datos)
     mapaProcesado = preprocesado(mapa)
     modelos = cargaModelos()
     
-    predicc = []       
+    # Se realizan las predicciones para cada sensor y modelo
+    sensores1 = []
+    sensores2 = [] 
     for m in modelos:
-        predicc.append(m.predict(mapaProcesado))
+        predic = m.predict(mapaProcesado)
+        sensores1.append(predic[0][0])
+        sensores2.append(predic[1][0])
     
-    sensores1 = predicc[:(len(predicc)//2)]
-    sensores2 = predicc[(len(predicc)//2):]
-    
+    # Se obtiene el valor medio de las predicciones entre los sensores
     valorS1 = np.sum(sensores1)/len(sensores1)
     valorS2 = np.sum(sensores2)/len(sensores2)
     print("\nPredicción según los sensores: 123 y 124")
@@ -281,28 +341,29 @@ def evaluaBobina(datos, idBobina):
         
     historialPath = 'historial.txt'
 
-    # Verificar si el archivo existe
+    # Se comprueba si existe el fichero historial
     if not os.path.exists(historialPath):
-        # Crear el archivo vacío
+        # Si no existe se crea el fichero
         open(historialPath, 'w').close()
 
-    # Obtener la fecha actual
+    # Se obtiene la fecha actual
     fecha = datetime.date.today()
 
-    # Abrir el archivo en modo lectura
+    # Se abre el archivo en modo lectura
     with open(historialPath, 'r') as archivo:
         lineas = archivo.readlines()
 
-    # Agregar una línea con la fecha actual y dos unos al final
+    # Se añaden dos nuevas líneas con las predicciones sobre los datos
     lineaNueva = f"{fecha}::{idBobina}::123-124::{lab1}\n"
     lineas.append(lineaNueva)
     lineaNueva = f"{fecha}::{idBobina}::201-202::{lab2}\n"
     lineas.append(lineaNueva)
 
-    # Guardar el archivo modificado
+    # Se guarda el fichero
     with open(historialPath, 'w') as archivo:
         archivo.writelines(lineas)
-        
+
+# Método encargado de crear la carpeta bobinas en caso de que no exista.
 def creaCarpeta():
     ruta = './bobinas'
 
