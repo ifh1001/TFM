@@ -12,6 +12,7 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{dirtree}
+\usepackage{subfig}
 
 \RequirePackage{booktabs}
 \RequirePackage[table]{xcolor}
@@ -371,66 +372,6 @@
 \maketitle
 
 
-\newpage\null\thispagestyle{empty}\newpage
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\thispagestyle{empty}
-
-
-\noindent
-\begin{center}%
-	{\noindent\Huge Universidades de Burgos, León y Valladolid}\vspace{.5cm}%
-	
-\begin{center}%
-	\includegraphics[height=3cm]{img/escudoUBU} \hspace{1cm}
-	\includegraphics[height=3cm]{img/escudoUVA} \hspace{1cm}
-	\includegraphics[height=3cm]{img/escudoULE} \vspace{1cm}%
-\end{center}%
-
-	{\noindent\Large \textbf{Máster universitario en Inteligencia de Negocio y Big~Data en Entornos Seguros}}\vspace{.5cm}%
-\end{center}%
-
-
-
-\noindent D. nombre tutor, profesor del departamento de nombre departamento, área de nombre área.
-
-\noindent Expone:
-
-\noindent Que el alumno D. \nombre, con DNI 71363577M, ha realizado el Trabajo final de Máster en Inteligencia de Negocio y Big Data en Entornos Seguros 
-          titulado Aplicación de Machine Learning a imágenes 1D y 2D de control de calidad en recubrimiento de Zinc. 
-
-\noindent Y que dicho trabajo ha sido realizado por el alumno bajo la dirección del que suscribe, en virtud de lo cual se autoriza su presentación y defensa.
-
-\begin{center} %\large
-En Burgos, {\large \today}
-\end{center}
-
-\vfill\vfill\vfill
-
-% Author and supervisor
-\begin{minipage}{0.45\textwidth}
-\begin{flushleft} %\large
-Vº. Bº. del Tutor:\\[2cm]
-D. nombre tutor
-\end{flushleft}
-\end{minipage}
-\hfill
-\begin{minipage}{0.45\textwidth}
-\begin{flushleft} %\large
-Vº. Bº. del co-tutor:\\[2cm]
-D. nombre co-tutor
-\end{flushleft}
-\end{minipage}
-\hfill
-
-\vfill
-
-% para casos con solo un tutor comentar lo anterior
-% y descomentar lo siguiente
-%Vº. Bº. del Tutor:\\[2cm]
-%D. nombre tutor
-
 
 \newpage\null\thispagestyle{empty}\newpage
 
@@ -446,9 +387,9 @@ En el proceso de galvanizado es muy importante mantener los niveles de la capa d
 
 Una empresa dedicada a este proceso, nos ha solicitado que creemos un modelo que, a través de datos medidos por sensores en la cadena de producción, y aplicado sobre bobinas que tiene algún defecto, se realice una predicción sobre si la bobina podrá ser aprovechable o no.
 
-Para ello, se llevarán a cabo diversos experimentos sobre datos 1D y 2D, para ver cuál de ellos da mejores resultados junto con la validación cruzada, probando diversos parámetros para obtener el mejor resultado posible.
+Para ello, se llevarán a cabo diversos experimentos sobre datos 1D y 2D, probando diversos parámetros para obtener el mejor resultado posible.
 
-Además, se llevará a cabo una aplicación que simulará el proceso que un operario de la empresa debería de seguir para cargar los datos de las bobinas y esperar las predicciones sobre los mismos.
+Además, se llevará a cabo una aplicación que simulará el proceso que un operario de la empresa debería seguir para cargar los datos de las bobinas y esperar las predicciones sobre los mismos.
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
@@ -461,13 +402,13 @@ Galvanizado, bobinas galvanizadas, \emph{deep learning}, redes neuronales convol
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-In the galvanizing process, it is crucial to maintain zinc layer levels within certain minimums to ensure that the steel withstands different scenarios it is intended for, as well as maximums to prevent the company from losing money by overspending on zinc and avoid excessive hardening of the steel, making it difficult to work with.
+In the galvanizing process, it is crucial to maintain the levels of the zinc layer within certain minimum and maximum ranges. This is done to ensure that the steel can withstand different scenarios it is intended for, while avoiding excessive zinc usage that could result in financial loss for the company and preventing the steel from becoming too hard to work with.
 
-A company dedicated to this process has requested us to create a model that, using data measured by sensors in the production line and applied to coils with some defect, can make a prediction on whether the coil will be usable or not.
+A company dedicated to this process has requested us to create a model that, using data measured by sensors in the production line and applied to coils with some defects, can predict whether the coil can be salvaged or not.
 
-To achieve this, various experiments will be conducted on 1D and 2D data to determine which of them yields better results, along with cross-validation, while testing different parameters to obtain the best possible outcome.
+To achieve this, various experiments will be conducted on 1D and 2D data, testing different parameters to obtain the best possible outcome.
 
-Additionally, an application will be developed to simulate the process that a company operator should follow to load coil data and wait for the predictions on them.
+Furthermore, an application will be developed that simulates the process an operator from the company should follow to input the coil data and receive predictions for the same.
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}

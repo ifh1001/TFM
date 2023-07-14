@@ -1,13 +1,13 @@
 \capitulo{3}{Trabajos relacionados}
 
-Analizando trabajos que también usen el \emph{deep learning} en la rama de la industria centrada en el acero galvanizado, me he dado cuenta de que existen una gran variedad de artículos centrados en este tema; lo que afirma la importancia de controlar los niveles de zinc en el acero, comentado previamente en la introducción. 
+Analizando trabajos que también usen el \emph{deep learning} en la rama de la industria centrada en el acero galvanizado, existe una gran variedad de artículos centrados en este tema; lo que afirma la importancia de controlar los niveles de zinc en el acero, comentado previamente en la introducción. 
 
-Pese a todo, el número de artículos centrados en los mismos objetivos que este proyecto es bastante limitado, ya que la mayoría busca detectar defectos en el galvanizado de láminas de acero con redes neuronales. A continuación se muestran algunos de ellos:
+Pese a todo, el número de artículos centrados en los mismos objetivos que este proyecto es bastante limitado, ya que la mayoría busca predecir las capas de zinc de láminas de acero con redes neuronales. A continuación se muestran dos artículos, cuyo principal objetivo es predecir las capas de zinc del acero galvanizo, a partir de diferentes medidas tomadas en la línea de producción.
 
 \section{Research on Zinc Layer Thickness Prediction Based on LSTM Neural Network}
 Autores: Zhao Lu, Yimin Liu y Shi Zhong
 
-Este artículo \cite{9602402} utiliza una red neuronal LSTM, que es un tipo de red recurrente (y que en el siguiente punto se explicará más en detalle), que permite detectar propiedades de los datos a lo largo del tiempo gracias a su capacidad de retener memoria.
+Este artículo \cite{9602402} utiliza una red neuronal LSTM (\emph{Long Short-Term Memory}), que es un tipo de red recurrente (y que en el siguiente punto se explicará más en detalle), que permite detectar propiedades de los datos a lo largo del tiempo gracias a su capacidad de retener memoria.
 
 El propósito de dicho artículo es el de predecir el espesor del zinc de acero galvanizado en caliente, con el fin de ver si cumple con los requisitos mínimos y máximos necesarios. Para ello se emplearán los diferentes datos medidos por los sensores en la cadena de producción, y, en última instancia, se realizará la predicción.
 
@@ -16,9 +16,9 @@ Finalmente, los resultados obtenidos son muy buenos, ya que su error porcentual 
 \section{Coating Thickness Modeling and Prediction for Hot-dip Galvanized Steel Strip Based on GA-BP Neural Network}
 Autores: Kai Mao, Yong-Li Yang, Zhe Huang y Dan-yang Yang
 
-Este segundo artículo \cite{9164854} es muy parecido al anterior, solo que utilizan una red neuronal BP, que se caracteriza por ser una red que puede ajustar con el paso del tiempo los pesos de sus enlaces con el fin de reducir al máximo la función de error.
+Este segundo artículo \cite{9164854} es muy parecido al anterior, solo que utilizan una red neuronal BP (\emph{Back Propagation}), que se caracteriza por ser una red que puede ajustar con el paso del tiempo los pesos de sus enlaces con el fin de reducir al máximo la función de error.
 
 El principal objetivo del artículo es predecir el espesor de zinc sobre chapas de acero galvanizadas en caliente. Para ello, usarán diferentes parámetros medidos durante el proceso de galvanizado, como la velocidad de la línea, la presión de la chapa que corta el acero o la temperatura a la que se encuentra el zinc.
 
-Finalmente, se comenta que los resultados de la red neuronal BP no son demasiado buenos, por lo que se añadió también un algoritmo genérico que permitió optimizar la red, y con ello obtener buenos resultados; comentando incluso que es posible su uso por parte de las empresas en la fase de control de calidad.
+Finalmente, se comenta que los resultados de la red neuronal BP no son demasiado buenos, por lo que se añadió también un algoritmo genético que permitió optimizar la red, y con ello obtener buenos resultados; comentando incluso que es posible su uso por parte de las empresas en la fase de control de calidad.
 

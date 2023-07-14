@@ -11,11 +11,11 @@ En segundo lugar, necesitará tener un entorno con todas las librerías que usa 
 Una vez se diponga de todo lo anterior, ya sería posible poder utilizar la aplicación que se ha llevado a cabo en este proyecto.
 
 \section{Instalación}
-En primer lugar, sería necesario descargar en instalar Anaconda en caso de que no se disponga de dicha herramienta. Ya que permite crear un entorno con todos los requisitos de la aplicación y se podrá usar sin ningún problema. Para ello, es tan sencillo como ir a la siguiente ruta:
+En primer lugar, sería necesario descargar en instalar Anaconda en caso de que no se disponga de dicha herramienta, ya que permite crear un entorno con todos los requisitos de la aplicación, permitiendo que se pueda usar sin ningún problema. Para ello, es tan sencillo como ir a la siguiente ruta:
 
 \url{https://www.anaconda.com/download}
 
-Y en ella descargar, la versión adecuada a tu sistema operativo. Tras esto, sería tan sencillo como seguir el instalador y esperar unos minutos a que termine la instalación.
+Y en ella descargar la versión adecuada a tu sistema operativo. Tras esto, sería tan sencillo como seguir el instalador y esperar unos minutos a que termine la instalación.
 
 En segundo lugar, habría que instalar las dependencias de la aplicación. Para facilitar este proceso se ha dejado en el repositorio del proyecto un fichero \emph{requirements}, obtenido de un entorno \emph{Windows}, que permitirá descargar todas las librerías junto con sus versiones que hacen que se garantice la posibilidad de utilizar la aplicación. Dicho fichero se puede encontrar en el siguiente enlace:
 
@@ -30,12 +30,12 @@ conda create --name nombre_entorno --file requirements.txt
 Y tras esperar unos minutos, se habrán instalado todas las dependencias, por lo que ya se ha creado un entorno que sea capaz de lanzar la aplicación.
 
 \section{Manual del usuario}
-En primer paso para poder utilizar la aplicación, es lanzar \emph{Jupyter Notebook}. Para ello, y basándose el apartado de instalación, lo primero sería cambiar al nuevo entorno, y posteriormente ejecutar el comando de la herramienta. Ambos comandos se muestran a continuación:
+En primer paso para poder utilizar la aplicación, es lanzar \emph{Jupyter Notebook}. Para ello, y basándose en el apartado de instalación, lo primero sería cambiar al nuevo entorno, y posteriormente ejecutar el comando de la herramienta. Ambos comandos se muestran a continuación:
 
 \begin{verbatim}
-conda activate nombre_entorno
-
-jupyter notebook
+    conda activate nombre_entorno
+    
+    jupyter notebook
 \end{verbatim}
 
 Tras su ejecución aparecerá en el navegador la herramienta, y sería tan sencillo como dirigirse al directorio donde se encuentra el \emph{notebook} de la aplicación. Tras abrirlo se verá que hay 3 celdas y que habrá que ejecutar en orden. Para ejecutar una celda, hacemos clic sobre ella y pulsamos al botón \textbf{Run} que se encuentra en el menú superior, tras esperar un rato veremos como a la izquierda de la celda aparecerá un 1, de igual forma que se puede ver en la Figura \ref{f:celda1}.
@@ -58,6 +58,6 @@ Finalmente, se ejecutará la última celda, y se verá como aparece un desplegab
  \label{f:celda3}
 \end{figure}
 
-También, en el directorio \texttt{./bobinas} se verán los diferentes CSV asociados a las bobinas sobre las que se han realizado predicciones. Además, junto al \emph{notebook} de la aplicación, se encontrará el fichero historia.txt donde se podrá consultar las predicciones de todas las bobinas.
+También, en el directorio \texttt{./bobinas} se verán los diferentes CSV asociados a las bobinas sobre las que se han realizado predicciones. Además, junto al \emph{notebook} de la aplicación, se encontrará el fichero historial.txt donde se podrá consultar las predicciones de todas las bobinas.
 
-Tras usar la aplicación, sería tan sencillo como cerrar la pestaña de la aplicación y finalmente cerrar la consola desde la que se ha lanzado \emph{Jupyter Notebook}, y de esta forma se detendría todo el proceso.
+Tras usar la aplicación, sería tan sencillo como cerrar la pestaña de la aplicación y finalmente cerrar la consola desde la que se ha lanzado \emph{Jupyter Notebook}, y de esta forma se detendría todo el proceso por completo.
